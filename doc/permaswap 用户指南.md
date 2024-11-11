@@ -20,7 +20,7 @@ Permaswap 是一个基于 FusionFi 协议并构建在超并行计算机 AO 上�
 ### 链接钱包
 Permaswap 目前支持 ethereum 生态和 Arweave 生态上所有主流钱包连接。   
 Arweave Wallet:
-![Arweave Wallet](image.png)   
+![Arweave Wallet](image.png){:width="150px" height="100px"}   
 Ethereum Wallet:
 ![Ethereum Wallet](image-1.png)   
 
