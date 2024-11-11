@@ -20,9 +20,9 @@ Permaswap 是一个基于 FusionFi 协议并构建在超并行计算机 AO 上�
 ### 链接钱包
 Permaswap 目前支持 ethereum 生态和 Arweave 生态上所有主流钱包连接。   
 Arweave Wallet:
-![Arweave Wallet](image.png){:width="150px" height="100px"}   
+![Arweave Wallet](./image/image.png)  
 Ethereum Wallet:
-![Ethereum Wallet](image-1.png)   
+![Ethereum Wallet](./image/image-1.png)   
 
 ## 拥有 AO 上的资产
 将您的资产转移到 AO，生态中目前有两个第三方提供的跨链桥可以选择：
@@ -46,7 +46,7 @@ Permaswap 基于 FusionFi 协议的 AMM 交易模型实现市场单功能，为�
 ### 如何使用 Permaswap 市场单功能
 点击导航栏上的 Swap 按钮，进入 Swap 产品界面，选择想要兑换的 token 即可完成实时兑换，如图所示：   
 
-![swap](image-5.png)    
+![swap](image/image-5.png)    
 #### 滑点  
 滑点是兑换的预期价格与其实际成交价格的差额。   
 - 用户可以自行设置滑点值，确定预期价格和成交执行价格之间的最大差值
@@ -56,7 +56,7 @@ Permaswap 基于 FusionFi 协议的 AMM 交易模型实现市场单功能，为�
 
 Permaswap 默认滑点为 0.5%, 您可以通过以下方式修改默认值：   
 
-![滑点](image-4.png)   
+![滑点](image/image-4.png)   
 
 #### Fees  
 Permaswap 平台不会收取任何费用，每一笔兑换的具体费用取决于您与之交互指定的 AMM pool, 这些费用会在该 AMM pool 中自动分配给流动性提供者(LP).    
@@ -86,12 +86,12 @@ Permaswap 基于 FusionFi 协议的 Order Book 模型实现限价单功能，为
 ### 如何使用 Permaswap 限价单功能
 点击导航栏上的 Spot 按钮，进入 Spot 产品界面，选择想要挂单的交易对，设置挂单价格，即可完成限价单的挂单：   
 
-![spot](image-6.png)
+![spot](image/image-6.png)
 
 #### 创建 Spot Agent
 初次使用限价单功能的用户点击 Create Spot Account 之后，Permaswap 自动帮助用户创建一个 Agent, 负责维护和执行用户挂单的所有限价单。
-![spot agent](image-7.png)
-![create agent](image-8.png)   
+![spot agent](image/image-7.png)
+![create agent](image/image-8.png)   
 
 Spot Agent 的作用：   
 - 持续监控市场价格：
@@ -107,22 +107,22 @@ Agent 的使用可以降低交易风险。通过自动化监控和执行，用�
 在使用限价单之前，Agent 需要持有足够的资产。所以您需要提前为 Agent 充值，操作如下：    
 在 Transfer 页面, 选择需要挂单的资产类型并输入足够的数额进行充值
 
-![transfer agent](image-9.png)
+![transfer agent](image/image-9.png)
 
 #### 挂单
 挂单操作如下：   
 选择挂单价格，挂单数量进行挂单即可   
 
-![alt text](image-10.png)   
+![alt text](image/image-10.png)   
 挂单成功之后，就等待 Agent 自动接受吃单请求进行成交即可。   
 吃单者可能是普通用户，可能是各种类型做市商，也可能是套利者机器人等等。FusionFi 协议中实现的 Order Book 是一个开放的订单薄系统，只要遵守协议规范，任何主体的挂单和吃单交易都会被执行，这使得 FusionFi 协议可以聚合 ao 网络上几乎所有的资产流动性。    
 #### 吃单
 用户可以直接在挂单池里面直接对指定的限价单进行吃单，对于 Permaswap 平台而言这只是其中一种最简单的吃单方式，也是用户最便捷的一种吃单方式。    
 操作如下：   
 1. 点击订单池中指定的订单   
-![alt text](image-11.png)    
+![alt text](image/image-11.png)    
 2. 进行吃单交易   
-![alt text](image-12.png)
+![alt text](image/image-12.png)
 
 
 ### 总结
