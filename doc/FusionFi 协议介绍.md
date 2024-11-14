@@ -25,6 +25,7 @@ Note 是 FusionFi 协议的一个核心概念。它是一种资产的抽象表�
 ### Settlement
 Settlement ”结算“ 是 FusionFi 协议的一个核心概念。它代表在协议中处理和完成金融交易的过程。它是确保 Agents 发起的所有金融活动能够成功完成的关键环节。
 
+---
 
 ## 协议架构
 ```
@@ -71,6 +72,8 @@ Settlement ”结算“ 是 FusionFi 协议的一个核心概念。它代表在�
 - Agents 或者 User 都可以直接生成 note 并发送给 note pool
 - settler 负责从 note pool 中提取可结算的 notes, 并将其发送到 Settlement Center 进行结算。Settler 可以是 普通用户、套利机器人甚至是 Agent 等
 - Settlement Center 负责处理结算请求，系统中可以有多个 Settlement Center, 负责执行各自的结算任务
+---
+### 下面详细介绍协议系统架构中的各个关键组件
 
 ## Note
 在基于 FusionFi 协议的系统中，Note 是一种独立的金融工具或权益证明。    
@@ -165,6 +168,7 @@ function settleNode(noteID, settler)
   updateNoteStatus(noteID, "Settled")
 end
 ```
+--- 
 
 ## Note Pool
 在 FusionFi 的系统架构中，Note Pool 是一个关键组件, 它用于聚合并存储系统中所有的 Note，是系统中所有 Note 进行匹配和流转的中心位置，所有的 Settler 都依赖于 Note Pool 以查找合适的结算机会。    
@@ -185,6 +189,7 @@ end
 
 ### 总结
 在 FusionFi 系统中，Note Pool 是所有交易流动性的聚合中心，它存储、管理并匹配系统中的各种 Note。Note Pool 提供了一个集中的流动性池，为用户和 Settler 提供了丰富的交易机会，并通过高效的筛选和匹配功能促进了系统内的各种交易活动。通过 Note Pool 的设计，FusionFi 系统可以保持高效的交易匹配，同时确保交易过程的透明性和安全性。
+---
 
 ## Settler
 在 FusionFi 的系统架构中，Settler 是一个关键组件，负责管理和协调系统中的 Note 结算过程。Settler 的主要作用是从 Note Pool 中找到具有特定套利空间或匹配交易需求的 Notes,并将这些 Notes 提交到 Settlement Center 进行结算。
@@ -229,6 +234,7 @@ end
 
 ### 总结
 在 FusionFi 系统中，Settler 的灵活性和扩展性，可以支持多样化的结算策略和条件，为用户提供了更优质的去中心化金融服务体验。
+---
 
 ## Settlement Center
 在 FusionFi 的系统架构中，Settler Center 是一个关键组件，负责处理系统内各种 Note 结算操作。系统允许多个 Settler Center 存在, 不同的 Settler Center 有各自专门结算功能，例如处理兑换交易、借贷交易等。
@@ -261,6 +267,5 @@ Settlement Center 的首要职责是接收来自 Settler 的待结算的 Notes�
 
 ### 总结
 在 FusionFi 系统中，Settlement Center 的设计使得整个系统具有灵活性和可扩展性，可以适应不同类型的金融活动和需求。
-
 
 ---
