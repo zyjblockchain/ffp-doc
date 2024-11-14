@@ -80,7 +80,7 @@ Settlement ”结算“ 是 FusionFi 协议的一个核心概念。它代表在�
 Note 的形式可以是代币、债券、凭证、合约权利等，它的存在主要是为了在系统中创建具有价值、可交易的对象。每一个 Note 都可以代表一种资产、合约或特定的权益。    
 
 ### Note 的主要属性
-每个 Note 通常会具备一下属性：
+每个 Note 通常会具备一下属性：   
 - NodeID: Note 的唯一标识符，便于在系统中识别和跟踪
 - Issuer: Note 的发行方，发行（创建） Note 的用户或 Agent
 - Holder: 当前拥有该 Note 的用户或 Agent
@@ -94,7 +94,7 @@ Note 的形式可以是代币、债券、凭证、合约权利等，它的存在
 - SettleRule: 结算规则，Note 在被结算时的具体规则，比如结算条件、结算方式、结算价格等信息
 
 ### Note 的生命周期
-在系统中，Note 的生命周期通常包含以下几个阶段：
+在系统中，Note 的生命周期通常包含以下几个阶段：   
 1. 创建：Note 被 Agent 或者用户创建，产生并进入 Note Pool. 每个 Note 会携带其属性和特性信息。
 2. 存储：所有 Note 会被集中存储在系统的 Note Pool 中，Note Pool 在系统中扮演一个共享存储空间，方便其他实体（如 Settler) 访问。
 3. 提取：Settler 从 Note Pool 中检索符合条件的 Note, 准备进行结算。Settler 可能会根据特定的策略或条件（如价格波动或套利）来选择 Note.
@@ -175,15 +175,15 @@ end
 通常在系统中只需要一个 Note Pool, 这样可以集中管理 Note 数据，促进流动性聚合，提高系统的交易效率和用户体验。   
 
 ### Note Pool 的主要功能
-1. 存储和管理所有的 Note    
+1. 存储和管理所有的 Note     
 - 负责存储所有在系统内创建的 Notes。每当 Settler 创建一个 Note, 它就会被发送到 Note Pool 进行存储。
 - Note Pool 存储每个 Note 的必要信息，例如资产类型、结算类型、过期时间等，以便 Settler 能够判断是否可以使用这些 Note 进行结算。    
 
-2. 流动性聚合   
+2. 流动性聚合    
 - 通过将所有的 Note 集中到 Note Pool 中，系统能欧聚合流动性，促进各类交易的匹配结算。    
 - 无论是普通用户、套利者、还是做市商的 Note,都会被集中到 Note Pool 中。这样可以最大化系统的流动性，使得 Settler 可以找到合适的交易对手方。   
 
-3. Note 的匹配和筛选   
+3. Note 的匹配和筛选    
 - Note Pool 支持 Note 的筛选和匹配功能。Settler 会在 Note Pool 中查找符合条件的 Note，用于执行套利或满足用户交易需求。
 - 例如，某个 Settler(例如普通用户) 可能希望进行代币兑换交易，他们会在 Note Pool 中查找符合兑换条件的 Note; 套利者也可以在 Note Pool 中查找具有套利机会的 Note 以实现利润。
 
@@ -196,22 +196,22 @@ end
 在 FusionFi 的系统架构中，Settler 是一个关键组件，负责管理和协调系统中的 Note 结算过程。Settler 的主要作用是从 Note Pool 中找到具有特定套利空间或匹配交易需求的 Notes,并将这些 Notes 提交到 Settlement Center 进行结算。
 
 ### Settler 的主要功能
-1. 在 Note pool 中获取可结算的 Notes
+1. 在 Note pool 中获取可结算的 Notes   
 - Settler 的首要任务是在监控系统中的 Note Pool, 从中筛选出满足条件的 Notes.
 - 任何系统参与者都可以成为一个 Settler, 并根据自己的需求撮合 Notes 进行结算。可以是一个套利者、AMM Pool、Agents等。
-2. 提交到 Settlement Center 进行结算
+2. 提交到 Settlement Center 进行结算   
 - Settler 一旦找到符合条件的 Notes, 会将其提交到系统中的 Settlement Center 进行结算。Settlement Center 负责具体的结算操作。
 - Settler 的任务是找到 Notes 并发起结算请求，而具体的结算过程则由 Settlement Center 执行。
 - Settler 不会负责 Notes 的结算状态。Note 的结算状态是由 Note 的发行方自行管理，是 Note 和 Settlement Center 之间的交互状态。
 
 ### Settler 类型
 在 FusionFi 的系统架构中，Settler 类型没有限制，是根据您的交易需求和策略来定义自己的 Settler 类型。下面会例举三种最主要的 Settler 类型的功能和作用作为您构建自己的 Settler 的参考：   
-1. 普通用户   
+1. 普通用户      
 普通用户也可以是一个 Settler, 例如需要代币兑换。普通用户会在 Note Pool 中找到合适的对手方（满足器需求的 Note),然后创建一个新的Note, 并将这两个 Notes 提交到 Settlement Center 进行结算。   
 最简单的场景就是用户代币兑换，比如用户想要用 5 Atoken 兑换 10 Btoken。此时在 Note Pool 中找到一个 Note 的结算规则是花费 10 Btoken 获取 5 Atoken，正好满足用户的需求，用户就会先创建一个结算规则为花费 5 Atoken 获取 10 Btoken 的 Note, 并把这两个 Note 一起发送给 Settlement Center 进行结算。
 但是，如果交易市场不是很成熟的情况下，用户可能很难在 Note Pool 中找到满足条件的 Note，这种情况下就需要做市商。
 
-2. 做市商
+2. 做市商     
 在上面描述的 “普通用户” Settler 的场景中，如果是在一个不成熟的交易市场里，用户可能很难在 note pool 中找到匹配的 note。
 在任何交易市场中，做市商都是非常重要的，它为交易市场提供足够的流动性撮合交易，提供交易市场内的交易效率。
 在 FusionFi 系统里，作为挂单方做市商会根据市场需求创建 notes 提供交易结算。
@@ -220,17 +220,18 @@ end
 最简单的场景是假设有一个产品基于 FusionFi 构建了一个运行用户挂限价单的订单薄系统。
 作为交易撮合方，做市商会在 note pool 中获取到这些用户挂的限价单 notes, 并作为 Setter 结算满足条件的 notes.
 
-3. 套利者
-基于 FusionFi 的结算规则，Settler 可以实现无本套利。在 FusionFi 结算系统里，比如有两个 note, 他们的结算规则分别如下：
+3. 套利者       
+基于 FusionFi 的结算规则，Settler 可以实现无本套利。   
+在 FusionFi 结算系统里，比如有两个 note, 他们的结算规则分别如下：    
 - note1: 10 Atoken 兑换 5 Btoken
 - note2: 5 Btoken 兑换 9 Atoken
 
-如果要对 note1+note2 进行结算，FusionFi 协议中 Swap 结算规则如下：
+如果要对 note1+note2 进行结算，FusionFi 协议中 Swap 结算规则如下：    
 - note1 发行者转账 10 Atoken 到 settlement center.
 - note2 发行者转账 5 Btoken 到 settlement center.
-- settlement center 分别转 5 Btoken 到 note1 发行者，转 9 Atoken 到 note2 发行者
-这时候发现 settlement center 里面还结余 1 Atoken，更加 FusionFi 的结算规则，结余的 1 Atoken 会转给 Settler. 这个时候 Settler 就实现了无本套利。    
+- settlement center 分别转 5 Btoken 到 note1 发行者，转 9 Atoken 到 note2 发行者   
 
+这时候发现 settlement center 里面还结余 1 Atoken，更加 FusionFi 的结算规则，结余的 1 Atoken 会转给 Settler. 这个时候 Settler 就实现了无本套利。    
 结合 FusionFi 系统内的做市商，套利操作会变得更加灵活。从上面 `2.做市商` 的描述可以了解到，即使 note pool 里面可能没有 note2， 但是如果 Settler 发现有一个做市商可以发行 `5Btoken 兑换 9 Atoken` 的 note, 那 Settler 可以先让做市商发行该 note，然后再去进行套利结算。
 
 ### 总结
@@ -247,23 +248,23 @@ Settlement Center 的首要职责是接收来自 Settler 的待结算的 Notes�
 通常在创建 Note 的时候，会给 note 指定 Settler Center，这样 Settler 才能发给指定的 Settlement Center。Settlement Center 只会接收指定类型的 Notes。例如，一个专门用于兑换交易的 Settlement Center 只会接收代币兑换类型的 Notes, 而一个用于借贷结算的 Settlement Center 则只会接收涉及借贷交易的 Notes.
 
 #### 执行结算操作
-- Settlement Center 接收到 Notes 后，会进行一些列的结算操作，包括条件检查、资产转移等
-- 结算的具体流程可能因不同类型的 Settlement Center 有所不同，但通常包括一下几个步骤：
+- Settlement Center 接收到 Notes 后，会进行一些列的结算操作，包括条件检查、资产转移等   
+- 结算的具体流程可能因不同类型的 Settlement Center 有所不同，但通常包括一下几个步骤：   
   - 条件检查：Settlement Center 检查提交的 Notes 是否满足执行条件，例如类型要求，结算状态等
   - 资产转移：Settlement Center 会执行相关的资产转移操作，完成资产结算
   - 状态更新：结算完成之后，Settlement Center 会通知 Note 发行方结算结果，并完成 note 的状态更新
 
 ### Settlement Center 的类型
 由于 FusionFi 系统能够支持多种类型的金融服务，不同的 Settlement Center 可能被设计为适应特定类型的交易需求。以下是几种典型的 Settlement Center 类型：    
-1. 兑换交易的 Settlement Center
+1. 兑换交易的 Settlement Center   
 负责处理代币兑换类的交易，比如从一种代币兑换为另一种代币。    
 它会接收与兑换交易相关的 Notes, 并检查兑换交易的条件。在满足条件的情况下，Settlement Center 会执行 Note 发行者各方的代币交换过程，并完成结算操作。   
 
-2. 借贷交易的 Settlement Center    
+2. 借贷交易的 Settlement Center     
 负责处理借贷类交易，比如贷款的发放、还款、清算等操作。   
 它会接收与借贷相关的 Notes, 检查借贷的条件。在满足条件的情况下会执行借贷的资产转移，完成交易。    
 
-3. 其他金融交易的 Settlement Center   
+3. 其他金融交易的 Settlement Center     
 根据系统需求，Settlement Center 可以设计为支持其他类型的金融交易，比如市场预测交易、期权交易等。    
 每种类型的 Settlement Center 会有不同的业务逻辑和条件检查，但它们的核心职责始终一致：在符合条件的情况下执行 Notes 结算。    
 
